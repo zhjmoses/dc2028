@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>人类基础公理与定理知识总览</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #0b0c10;
+      --fg: #c5c6c7;
+      --accent: #66fcf1;
+      --accent-soft: #45a29e;
+      --card: #1f2833;
+      --border: #30363d;
+      --code-bg: #0d1117;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-main);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+    }
+    a { color: var(--accent-soft); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 1rem;
+      background: #0b0c10f5;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      color: var(--accent);
+    }
+    header p {
+      margin: 0.3rem 0 0;
+      font-size: 0.9rem;
+      color: #9da5b4;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+    .toc {
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+      background: #0d1117;
+    }
+    .toc h2 {
+      margin-top: 0;
+      font-size: 1rem;
+      color: var(--accent-soft);
+    }
+    .toc ul {
+      list-style: none;
+      margin: 0.5rem 0 0;
+      padding: 0;
+      columns: 2;
+      column-gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+    .toc li { margin: 0.15rem 0; }
+    section {
+      margin-bottom: 2rem;
+      border-radius: 0.75rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.2rem 1.3rem 1.3rem;
+    }
+    section h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: var(--accent);
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+    section h3 {
+      margin-top: 1rem;
+      font-size: 1.05rem;
+      color: var(--accent-soft);
+    }
+    p { margin: 0.35rem 0; font-size: 0.95rem; }
+    ul, ol {
+      margin: 0.3rem 0 0.5rem 1.2rem;
+      font-size: 0.92rem;
+    }
+    li { margin: 0.15rem 0; }
+    code {
+      font-family: var(--font-mono);
+      background: var(--code-bg);
+      padding: 0.12rem 0.25rem;
+      border-radius: 0.2rem;
+      font-size: 0.85rem;
+    }
+    .inline-tag {
+      display: inline-block;
+      padding: 0.05rem 0.45rem;
+      margin-right: 0.4rem;
+      border-radius: 999px;
+      border: 1px solid #3b3f4a;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #a3aab6;
+    }
+    .ref {
+      font-size: 0.8rem;
+      color: #9299a5;
+      margin-top: 0.25rem;
+    }
+    footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem 2rem;
+      font-size: 0.8rem;
+      color: #7b818d;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 700px) {
+      .toc ul { columns: 1; }
+      header { position: static; }
+      main { padding-top: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>人类基础公理与定理知识总览</h1>
+  <p>面向技术用户的「核心骨架」索引：数学 · 物理 · 计算 · 逻辑与信息论</p>
+</header>
+
+<main>
+  <div class="toc">
+    <h2>导航</h2>
+    <ul>
+      <li><a href="#math-axioms">数学公理系统</a></li>
+      <li><a href="#math-theorems">数学基础定理</a></li>
+      <li><a href="#physics">物理基本定律</a></li>
+      <li><a href="#cs-theory">计算与复杂性</a></li>
+      <li><a href="#info-logic">信息论与逻辑</a></li>
+      <li><a href="#meta">方法论与扩展建议</a></li>
+    </ul>
+  </div>
+
+  <section id="math-axioms">
+    <h2>一、数学公理系统：形式化的起点</h2>
+    <p><span class="inline-tag">axioms</span>数学采用公理系统作为一切推理的出发点，不再依赖“自明直觉”，而是从一组约定俗成的基础规则展开全局理论。</p>
+
+    <h3>1. 集合论公理（ZFC）</h3>
+    <p>现代绝大部分纯数学可以在 Zermelo–Fraenkel 集合论配合选择公理（ZFC）中形式化完成，是目前最广泛接受的基础框架之一 [web:1][web:2]。</p>
+    <ul>
+      <li>扩展公理：元素相同的两个集合被视为同一个集合 [web:2]。</li>
+      <li>空集公理：存在一个不含任何元素的集合，记作 ∅ [web:2]。</li>
+      <li>配对公理、并集公理与幂集公理：保证我们可以构造复合集合与其所有子集 [web:2]。</li>
+      <li>无限公理：断言至少存在一个具有无限多个元素的集合，为自然数等结构提供基础 [web:2]。</li>
+      <li>基础公理与替代公理：限制病态集合链并保证函数映像仍为集合 [web:2]。</li>
+    </ul>
+    <p class="ref">拓展：Hilbert 公理化几何、Peano 公理化自然数等，均可视为在 ZFC 之上的具体结构公理化 [web:1]。</p>
+
+    <h3>2. Peano 公理与代数基本运算</h3>
+    <p>自然数的性质可以由 Peano 公理系统刻画，包括“0 是自然数”“后继函数”“数学归纳法”等，为算术与数论提供严格基础 [web:1]。</p>
+    <p>与之配套的有加法、乘法的交换律、结合律、分配律以及单位元、逆元等十余条代数基本公理，构成从群到环再到域的抽象代数骨架 [web:8]。</p>
+
+    <h3>3. 连续统与实数体系</h3>
+    <p>实数可以通过 Dedekind 切割或 Cauchy 列的等价类构造，并辅以完备公理：任何有界单调数列都收敛于实数系内，从而为分析学奠基 [web:5]。</p>
+    <p>Archimedes 公理确保实数体系不存在“无限大”“无限小”的常规元素，使得几何长度与代数数值在直观上保持一致 [web:1]。</p>
+  </section>
+
+  <section id="math-theorems">
+    <h2>二、数学基础定理：结构与存在性</h2>
+    <p><span class="inline-tag">theorems</span>在上述公理框架之上，一系列“基础定理”刻画了数、函数、结构与空间的核心性质，是后续理论的关键节点。</p>
+
+    <h3>1. 算术基本定理</h3>
+    <p>算术基本定理断言：每个大于 1 的整数要么是素数，要么可以以唯一方式表示为若干素数的乘积，这是整数分解理论的根基 [web:2][web:5]。</p>
+
+    <h3>2. 代数与分析中的基础定理</h3>
+    <ul>
+      <li>代数基本定理：任何带复系数的单变量多项式在复平面上至少有一个根，这保证了复数域的“代数完备性” [web:5]。</li>
+      <li>微积分基本定理：连续函数的积分与原函数紧密对应，将面积视角与反导数计算统一起来，是分析学中最重要的桥梁之一 [web:5]。</li>
+      <li>线性代数基本定理族：关于线性变换、秩、核与像空间之间关系的一系列结果，是现代向量空间与矩阵理论的核心 [web:5]。</li>
+    </ul>
+
+    <h3>3. 结构与空间的基础结果</h3>
+    <ul>
+      <li>曲线、曲面、黎曼几何等各自都有“基本定理”，说明局部参数如何决定全局几何结构 [web:5]。</li>
+      <li>同态基本定理刻画代数结构在商结构中如何保持核心性质，为群、环、模的分类提供工具 [web:5]。</li>
+    </ul>
+  </section>
+
+  <section id="physics">
+    <h2>三、物理基本定律：描述可观测宇宙</h2>
+    <p><span class="inline-tag">laws</span>物理以一系列定律与守恒原则为核心，描述经典尺度到宇观与微观的物质与能量行为。</p>
+
+    <h3>1. 经典力学与引力</h3>
+    <ul>
+      <li>牛顿三大运动定律：惯性定律、力与加速度关系 \(F = ma\)、作用力与反作用力成对出现，构成经典力学的基石 [web:6][web:12]。</li>
+      <li>万有引力定律：任意两质量之间存在相互吸引，引力大小与质量乘积成正比，与距离平方成反比 [web:6][web:12]。</li>
+    </ul>
+
+    <h3>2. 守恒律与热力学</h3>
+    <ul>
+      <li>能量守恒：在封闭系统中，能量不会凭空产生或消失，只在不同形式之间转化 [web:6][web:9]。</li>
+      <li>动量与角动量守恒：在没有外力或外力矩作用时，总动量与总角动量保持不变 [web:6]。</li>
+      <li>热力学定律：零阶到第三定律刻画温度平衡、能量方向与熵的行为，是热机、统计物理与信息论的重要基础 [web:6][web:9]。</li>
+    </ul>
+
+    <h3>3. 电磁与现代物理</h3>
+    <ul>
+      <li>麦克斯韦方程：统一电场与磁场，预言电磁波的存在，是经典电磁学与光学的核心 [web:6][web:9]。</li>
+      <li>狭义相对论原理：物理定律在所有惯性参考系中形式相同，光速在真空中为常数，重构了时间与空间的概念 [web:15][web:9]。</li>
+      <li>量子力学公设与标准模型：通过波函数、算符与对易关系等公设描述微观粒子行为，并在标准模型中统一弱、电磁与强相互作用 [web:6][web:9]。</li>
+    </ul>
+  </section>
+
+  <section id="cs-theory">
+    <h2>四、计算与复杂性：可计算性边界</h2>
+    <p><span class="inline-tag">computation</span>理论计算机科学在集合论和逻辑基础上形成了对“算法能做什么”的系统刻画，涉及图灵机、可计算性与复杂性等级 [web:13]。</p>
+
+    <h3>1. 图灵机、公理化计算模型</h3>
+    <ul>
+      <li>图灵机模型：将算法抽象为读写带、有限状态控制与规则集，成为普遍采用的可计算性基准 [web:13][web:7]。</li>
+      <li>通用图灵机定理：存在一台机器可以模拟任意其他图灵机，相当于“可编程通用计算机”概念的理论依据 [web:7]。</li>
+    </ul>
+
+    <h3>2. 不可判定性与不完全性</h3>
+    <ul>
+      <li>停机问题：不存在通用算法能够对所有程序判断其是否最终停止，这标定了自动分析的根本极限 [web:7]。</li>
+      <li>Rice 定理：任何非平凡的程序语言性质都不可判定，进一步刻画了程序行为分析的难度边界 [web:7]。</li>
+      <li>Chaitin 不完全性与不可压缩性：大多数二进制串在最优编码下仍不可压缩，揭示了随机性与描述复杂度的深层联系 [web:7]。</li>
+    </ul>
+
+    <h3>3. 复杂性与分布式系统</h3>
+    <ul>
+      <li>Cook 定理（SAT 为 NP 完全）：说明布尔可满足问题是 NP 完全的，从而为大量组合优化问题提供统一复杂性坐标系 [web:7]。</li>
+      <li>CAP 定理：在分布式系统中，一致性、可用性与分区容忍性三者不可同时完全满足，只能权衡二者，这对分布式数据库与微服务架构设计至关重要 [web:7]。</li>
+      <li>量子阈值定理：只要物理量子门的错误率低于某个阈值，就可以通过纠错编码实现任意小的逻辑错误率，为可扩展量子计算提供理论基础 [web:7]。</li>
+    </ul>
+  </section>
+
+  <section id="info-logic">
+    <h2>五、信息论与逻辑：编码、推理与不完备</h2>
+    <p><span class="inline-tag">information</span>香农信息论与现代数理逻辑分别回答“怎样高效地编码与传输信息”和“形式系统能证明什么”。</p>
+
+    <h3>1. 香农信息论基础</h3>
+    <ul>
+      <li>源编码定理：给定信源熵，可以计算无损编码所需的最低平均比特数，是压缩与编码设计的理论下界 [web:7]。</li>
+      <li>采样定理（Whittaker–Nyquist–Shannon）：带限信号需要至少以最高频率两倍的速率采样以避免混叠，是数字信号处理的基础原则之一 [web:7]。</li>
+    </ul>
+
+    <h3>2. 逻辑系统与不完备性</h3>
+    <p>一阶逻辑与集合论上的形式系统构成了现代数学与计算理论的逻辑基础，其上可证明诸如完备性、紧性等结构性定理 [web:8][web:13]。</p>
+    <p>哥德尔不完备定理类结果表明：在足够强大的、无矛盾的形式系统中，总存在真实但不可在系统内部证明的命题，限制了“形式化一切”的企图 [web:11]。</p>
+  </section>
+
+  <section id="meta">
+    <h2>六、方法论与扩展建议</h2>
+    <p><span class="inline-tag">meta</span>上面只是一张面向「骨干结构」的极度压缩版索引，实际每一条公理/定理背后都是完整学科。</p>
+
+    <h3>1. 作为个人知识站的扩展路径</h3>
+    <ul>
+      <li>为每一条条目建立独立页面，增加：形式化表述、直观解释、典型应用与进一步参考文献。</li>
+      <li>按你日常使用场景扩展：比如在“计算与复杂性”下添加 CAP 实践案例、分布式一致性协议、密码学一方向等内容。</li>
+      <li>引入搜索与标签系统，将“公理/定理”与“实际工程场景”（网络协议、加密、容错设计）建立交叉链接。</li>
+    </ul>
+
+    <h3>2. 与工程实践的连接建议</h3>
+    <ul>
+      <li>将信息论部分与你在网络安全、编码、流量混淆上的实践结合，记录不同协议的熵特征与抗分析性。</li>
+      <li>把 CAP 与停机问题的思想写成面向中国技术读者的工程文章，说明为什么某些「看似简单的目标」在理论上就不可达。</li>
+      <li>在页面底部增加“更新日志”和“阅读路线”，从算术基本定理和图灵机开始，逐步走向复杂性与分布式架构。</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>本页仅作为骨干索引，具体数学与物理表述请参阅标准教材与原始论文。你可以在本基础上按需加入 LaTeX 渲染、交互式可视化或中英双语内容。</p>
+</footer>
+</body>
+</html>
